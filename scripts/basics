@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e  # Exit immediately if a command exits with a non-zero status.
+set -x  # All executed commands are printed to the terminal
+
+mkdir -p /usr/share/man/man1
+unzip -d /usr/share/ /tmp/scripts/JDownloader.zip
+
+aptitude update ; aptitude install -y openjdk-8-jre
+
+ln -s /usr/lib/jvm/java-1.8.0-openjdk-amd64 /usr/share/jd2/jre
+
+apt-get -y autoremove ; aptitude -y autoclean ; apt-get -y autoclean
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.aptitude
